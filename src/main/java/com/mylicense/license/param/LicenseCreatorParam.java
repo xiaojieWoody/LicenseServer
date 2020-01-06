@@ -37,7 +37,7 @@ public class LicenseCreatorParam implements Serializable {
     /**
      * 证书生成路径
      */
-    private String licensePath;
+//    private String licensePath;
 
     /**
      * 密钥库存储路径
