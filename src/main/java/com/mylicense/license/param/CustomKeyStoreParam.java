@@ -1,7 +1,6 @@
 package com.mylicense.license.param;
 
 import de.schlichtherle.license.AbstractKeyStoreParam;
-import lombok.Data;
 
 import java.io.*;
 

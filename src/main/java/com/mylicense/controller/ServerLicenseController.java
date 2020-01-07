@@ -49,7 +49,7 @@ public class ServerLicenseController {
         licenseCreatorParam.setDescription(param.getDescription());
 
         LicenseCreator licenseCreator = new LicenseCreator(licenseCreatorParam);
-        boolean result = licenseCreator.generateLicense(licenseCheckModel);
+        boolean result = licenseCreator.generateLicense();
 
         if(result){
             return new ResMsg(200, "success","",null);

@@ -1,6 +1,5 @@
 package com.mylicense.license;
 
-import com.mylicense.license.model.LicenseCheckModel;
 import com.mylicense.license.param.CustomKeyStoreParam;
 import com.mylicense.license.param.LicenseCreatorParam;
 import de.schlichtherle.license.*;
@@ -31,13 +30,13 @@ public class LicenseCreator {
         this.param = param;
     }
 
-    public boolean generateLicense(LicenseCheckModel licenseCheckModel) throws IOException {
+    public boolean generateLicense() throws IOException {
         // 临时文件
         File f = null;
         OutputStream toClient = null;
 
         try {
-            LicenseManager licenseManager = new CustomLicenseManager(initLicenseParam(),licenseCheckModel);
+            LicenseManager licenseManager = new CustomLicenseManager(initLicenseParam());
             LicenseContent licenseContent = initLicenseContent();
 
             // 浏览器下载
