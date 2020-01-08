@@ -42,7 +42,8 @@ public class ServerLicenseController {
         // 限制访问次数
         licenseCheckModel.setTotalCount(param.getTotalCount());
         // 客户服务器硬件信息
-        licenseCreatorParam.setLicenseCheckModel(licenseCheckModel);
+//        licenseCreatorParam.setLicenseCheckModel(licenseCheckModel);
+        licenseCreatorParam.setLicenseCheckModel(JSON.toJSONString(licenseCheckModel));
         BeanUtils.copyProperties(licenseConfig, licenseCreatorParam);
         licenseCreatorParam.setIssuedTime(new Date());
         licenseCreatorParam.setExpiryTime(param.getExpiryTime());

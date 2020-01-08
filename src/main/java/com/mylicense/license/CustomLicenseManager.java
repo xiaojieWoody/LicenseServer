@@ -1,17 +1,10 @@
 package com.mylicense.license;
 
-import com.mylicense.license.model.LicenseCheckModel;
 import de.schlichtherle.license.*;
 import de.schlichtherle.xml.GenericCertificate;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
-import java.beans.XMLDecoder;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 自定义LicenseManager

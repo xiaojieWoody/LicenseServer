@@ -1,7 +1,6 @@
 package com.mylicense.license.param;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mylicense.license.model.LicenseCheckModel;
 import lombok.Data;
 import lombok.ToString;
 
@@ -73,6 +72,9 @@ public class LicenseCreatorParam implements Serializable {
 
     /**
      * 额外的服务器硬件校验信息
+     * 如果使用类的话，该类的包名会存入License文件中，
+     * 那么，则客户端解密验证License时也需要相同包路径下的该类
      */
-    private LicenseCheckModel licenseCheckModel;
+//    private LicenseCheckModel licenseCheckModel;
+    private String licenseCheckModel;
 }
