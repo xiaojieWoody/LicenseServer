@@ -70,6 +70,7 @@ public class LicenseCreator {
      */
     private LicenseParam initLicenseParam() {
 
+        // 用来存储少量数据
         Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
         //设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());

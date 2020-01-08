@@ -39,6 +39,8 @@ public class ServerLicenseController {
         // 转Base64
         byte[] decode = Base64.getUrlDecoder().decode(machineCode);
         LicenseCheckModel licenseCheckModel = (LicenseCheckModel)JSON.parseObject(decode, LicenseCheckModel.class);
+        // 限制访问次数
+        licenseCheckModel.setTotalCount(param.getTotalCount());
         // 客户服务器硬件信息
         licenseCreatorParam.setLicenseCheckModel(licenseCheckModel);
         BeanUtils.copyProperties(licenseConfig, licenseCreatorParam);

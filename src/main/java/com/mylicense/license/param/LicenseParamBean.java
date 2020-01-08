@@ -35,4 +35,9 @@ public class LicenseParamBean implements Serializable {
      * 描述信息
      */
     private String description = "";
+
+    /**
+     * License允许被调用总量
+     */
+    private Long totalCount;
 }

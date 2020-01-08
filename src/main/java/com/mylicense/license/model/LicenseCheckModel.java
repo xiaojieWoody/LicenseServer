@@ -27,4 +27,8 @@ public class LicenseCheckModel implements Serializable {
      */
     private String mainBoardSerial;
 
+    /**
+     * License允许被调用总量
+     */
+    private Long totalCount;
 }
