@@ -4,6 +4,7 @@ import com.mylicense.license.param.CustomKeyStoreParam;
 import com.mylicense.license.param.LicenseCreatorParam;
 import de.schlichtherle.license.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -18,6 +19,7 @@ import java.text.MessageFormat;
 import java.util.prefs.Preferences;
 
 @Slf4j
+@Component
 public class LicenseCreator {
 
     private final static X500Principal DEFAULT_HOLDER_AND_ISSUER = new X500Principal("CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN");
@@ -26,22 +28,27 @@ public class LicenseCreator {
 
     private LicenseCreatorParam param;
 
-    public LicenseCreator(LicenseCreatorParam param) {
-        this.param = param;
-    }
+//    public LicenseCreator(LicenseCreatorParam param) {
+//        this.param = param;
+//    }
 
-    public boolean generateLicense() throws IOException {
+    public boolean generateLicense(LicenseCreatorParam param) throws IOException {
+        this.param = param;
+
         // 临时文件
         File f = null;
         OutputStream toClient = null;
 
         try {
+            // 证书生成参数 初始化 LicenseManager
             LicenseManager licenseManager = new CustomLicenseManager(initLicenseParam());
+            // 证书正文信息
             LicenseContent licenseContent = initLicenseContent();
 
             // 浏览器下载
             // 创建临时文件
             f = File.createTempFile(licensePrefix, licenseSuffix);
+            // 证书存储到文件中
             licenseManager.store(licenseContent,f);
             byte[] bytes = Files.readAllBytes(f.toPath());
             HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
@@ -74,6 +81,7 @@ public class LicenseCreator {
         Preferences preferences = Preferences.userNodeForPackage(LicenseCreator.class);
         //设置对证书内容加密的秘钥
         CipherParam cipherParam = new DefaultCipherParam(param.getStorePass());
+        // 密钥存储参数
         KeyStoreParam privateStoreParam = new CustomKeyStoreParam(LicenseCreator.class
                 ,param.getPrivateKeysStorePath()
                 ,param.getPrivateAlias()

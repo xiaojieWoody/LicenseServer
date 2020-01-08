@@ -25,6 +25,9 @@ public class ServerLicenseController {
     @Autowired
     private LicenseConfig licenseConfig;
 
+    @Autowired
+    private LicenseCreator licenseCreator;
+
     /**
      * 生成证书
      * @param param
@@ -51,8 +54,10 @@ public class ServerLicenseController {
         licenseCreatorParam.setConsumerAmount(param.getConsumerAmount());
         licenseCreatorParam.setDescription(param.getDescription());
 
-        LicenseCreator licenseCreator = new LicenseCreator(licenseCreatorParam);
-        boolean result = licenseCreator.generateLicense();
+//        LicenseCreator licenseCreator = new LicenseCreator(licenseCreatorParam);
+//        boolean result = licenseCreator.generateLicense();
+
+        boolean result = licenseCreator.generateLicense(licenseCreatorParam);
 
         if(result){
             return new ResMsg(200, "success","",null);
